@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Plus,
-  ChevronDown,
-  CheckCircle2,
-  Trash2,
-} from "lucide-react";
+import { Plus, ChevronDown, CheckCircle2, Trash2 } from "lucide-react";
 
 const initialFields = [
   {
@@ -57,6 +52,12 @@ const initialFields = [
   },
 ];
 
+const fileName = [
+  { id: 1, type: "csv", fileName: "hcp.csv" },
+  { id: 2, type: "csv", fileName: "weekend_rates.csv" },
+  { id: 3, type: "csv", fileName: "billcode.csv" },
+];
+
 const dataTypes = ["String", "Number", "Email", "Date", "Boolean"];
 
 export default function SchemaFlow() {
@@ -65,8 +66,8 @@ export default function SchemaFlow() {
   const updateField = (index, key, value) => {
     setFields((prev) =>
       prev.map((field, i) =>
-        i === index ? { ...field, [key]: value } : field
-      )
+        i === index ? { ...field, [key]: value } : field,
+      ),
     );
   };
 
@@ -99,15 +100,23 @@ export default function SchemaFlow() {
             We found {fields.length} columns in your file.
           </p>
         </div>
+        <div>
+          <select
+            // value={field.type || ""}
+            // onChange={(e) => updateField(index, "type", e.target.value)}
+            className="h-12 w-full rounded-lg border border-slate-300 bg-white px-3 text-base text-slate-800"
+          >
+            <option value="" disabled>
+              Select file
+            </option>
 
-        <button
-          type="button"
-          onClick={addField}
-          className="flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:bg-slate-50"
-        >
-          <Plus size={17} />
-          Add field
-        </button>
+            {fileName.map((file) => (
+              <option key={file.id} value={file.fileName}>
+                {file.fileName}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       {/* Table */}
@@ -140,9 +149,7 @@ export default function SchemaFlow() {
               <div className="relative w-[123px]">
                 <select
                   value={field.type}
-                  onChange={(e) =>
-                    updateField(index, "type", e.target.value)
-                  }
+                  onChange={(e) => updateField(index, "type", e.target.value)}
                   className="h-12 w-full appearance-none rounded-lg border border-slate-300 bg-white px-3 pr-8 text-[16px] text-slate-800 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
                 >
                   {dataTypes.map((type) => (
@@ -163,20 +170,14 @@ export default function SchemaFlow() {
             <div>
               <button
                 type="button"
-                onClick={() =>
-                  updateField(index, "required", !field.required)
-                }
+                onClick={() => updateField(index, "required", !field.required)}
                 className={`relative h-6 w-10 rounded-full transition ${
-                  field.required
-                    ? "bg-blue-600"
-                    : "bg-slate-300"
+                  field.required ? "bg-blue-600" : "bg-slate-300"
                 }`}
               >
                 <span
                   className={`absolute top-1/2 h-5 w-5 -translate-y-1/2 rounded-full bg-white shadow-sm transition ${
-                    field.required
-                      ? "left-[18px]"
-                      : "left-[1px]"
+                    field.required ? "left-[18px]" : "left-[1px]"
                   }`}
                 />
               </button>

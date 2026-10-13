@@ -1,18 +1,20 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
 import { useState } from "react";
+import Sidebar from "../components/Sidebar";
+import Header from "../components/Header";
 
 const DashboardLayout = () => {
-      const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <Sidebar
-      isOpen={isSidebarOpen}
-        setIsOpen={setIsSidebarOpen}
-         />
+      {/* Full-width header */}
+      <Header onMenuClick={() => setIsSidebarOpen(true)} />
 
-      <main className="ml-64 min-h-screen p-8">
+      {/* Sidebar and page content */}
+      <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+
+      <main className="min-h-[calc(100vh-4rem)] min-w-0 p-4 md:ml-64 sm:p-6 lg:p-8">
         <Outlet />
       </main>
     </div>
