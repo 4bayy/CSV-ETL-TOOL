@@ -12,19 +12,19 @@ Add screenshots of the running application to `docs/screenshots/`, then update t
 
 ### Dashboard
 
-![CSVFlow dashboard](src\assets\1.png)
+![CSVFlow dashboard](docs/screenshots/1.png)
 
 ### Upload CSV files
 
-![CSVFlow upload step](src\assets\2.png)
+![CSVFlow upload step](docs/screenshots/2.png)
 
 ### Transform and map data
 
-![CSVFlow transformation step](src\assets\3.png)
+![CSVFlow transformation step](docs/screenshots/3.png)
 
 ### Review and export results
 
-![CSVFlow review and export step](src\assets\4.png)
+![CSVFlow review and export step](docs/screenshots/4.png)
 
 **Taking screenshots:** Run the app locally, open each relevant screen, and capture the browser viewport. Save the images using the filenames above, or change the Markdown image paths to match your filenames. Do not commit screenshots containing real customer data, credentials, or other sensitive information.
 
